@@ -1,0 +1,72 @@
+---
+title: "YKunwar_LiveSession4Assignment"
+author: "Yejur Kunwar"
+date: "9/26/2017"
+output: 
+html_document: 
+ assignment4_md : TRUE
+ 
+---
+# Live session Unit 04 assignment
+
+# Questions
+
+##1. FiveThirtyEight Data
+#####a. Installing the fivethirtyeight package
+install.packages("fivethirtyeight")
+```{r, echo = TRUE}
+setwd("~/MSDS6306/Test_git")
+library(fivethirtyeight)
+```
+#####b. Assigning eighteenth data set to an object df
+```{r, echo = TRUE}
+data(package= "fivethirtyeight")
+df<- fivethirtyeight::college_recent_grads
+```
+#####c. Detailed list of the datasets to write out the URL in a comment to the related news story
+* The eighteenth data set assigned above can be found in fivethrieight package installed in R by assigning command below. The URL to reach the datasets in github is https://github.com/rudeboybert/fivethirtyeight/blob/master/README.md. 
+* The actual URL for eighteenth data set in fivethirtyeight package can be reached via http://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/.
+```{r, echo = TRUE}
+# More detailed list of data set can be displayed by this command below.
+vignette("fivethirtyeight", package = "fivethirtyeight")
+```
+#####d. Dimensions and columns of this dataframe
+```{r, echo = TRUE}
+dim(df) # Dimensions of df
+colnames(df) # Column names in df
+```
+#2. Data Summary
+#####a. Column names of data frame and count the number of columns
+```{r, echo = TRUE}
+colnames(df) # Column names in df
+ncol(df) # Number of Column in df
+```
+#####b. Generating a count of each major_category and assigning to major_count
+```{r, echo = TRUE}
+# Count of each unique major_category in the data frame and assigning column names in an object major_count
+major_count <- as.data.frame(table(df$major_category)) 
+colnames(major_count) <- c("Majors", "Frequency")
+major_count
+```
+#####c. Barplot for major_count
+```{r, echo = TRUE}
+par(las = 2)
+barplot(major_count$Frequency, names = major_count$Majors, horiz = TRUE, main = "Frequency of College Majors", xlab = "Frequency", ylab = "", col = "blue")
+
+```  
+
+#####d. Writing fivethirtyeight data to a csv file, no row labels
+```{r, echo = TRUE}
+write.csv(df, file='eighteenth_fivethirtyeight.csv', row.names = FALSE)
+
+write.csv(major_count, file = 'freq_majors.csv', row.names = FALSE )
+```
+#3. Codebook
+Please follow the link to go to gihub codebook:
+* Link: https://github.com/yejurkunwar/SMU-MSDS-homework
+
+
+# Displaying sessionInfo for documentation
+```{r, echo = TRUE}
+sessionInfo()
+```
