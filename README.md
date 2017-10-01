@@ -1,7 +1,7 @@
 # SMU-MSDS-homework
 
 ## Purpose 
-To develop a Codebook projet.
+To develop a Codebook project.
 
 ## Topics
 The homeworks related to various topics in R such as:
@@ -15,5 +15,6 @@ The homeworks related to various topics in R such as:
 * Data from various sources (details in each homework)
 
 ## Contact Information
-Yejur Singh Kunwar
+Yejur Singh Kunwar  
+
 Email: ykunwar@smu.edu
