@@ -10,13 +10,13 @@ https://2ds.datascience.smu.edu/local/files/index.php?course_id=104&group=290&us
 * Contents and Files
 I am listing each attributes of the raw files found in local machine with path '~/MSDS6306/Test_git/Homework_git/*.txt' (* = filename). 
 
-yob2016.txt 
+yob2016.txt \
 This files contains raw data separated by semicolon (;) without headers which contains First name of the child, gender and total children with that name on the year 2016.
 
-yob2015.txt 
-This files contains raw data separated by comma (,) without headers which contains First name of the child, gender and total children with that name on the year 2015.
+yob2015.txt \
+This files contains raw data separated by comma (,) without headers which contains First name of the child, gender and total children with that name on the year 2015.\
 
- The code is splitted into sections according to files utilized:
+ The code is splitted into sections according to files utilized:\
 
 * Data Munging
 * Data Merging
@@ -25,9 +25,9 @@ This files contains raw data separated by comma (,) without headers which contai
 
 
 ### Data Munging
- ** Used to read.table to read and import yob2016.txt and store it into an object (df)
- ** Object (df) contains following columns assigned by using colnames(df): "FirstNames", "Gender", "Total Children" 
- ** At this point checking dataset by using head function, summarizing using summary and structure function.
+ ** Used to read.table to read and import yob2016.txt and store it into an object (df)\
+ ** Object (df) contains following columns assigned by using colnames(df): "FirstNames", "Gender", "Total Children" \
+ ** At this point checking dataset by using head function, summarizing using summary and structure function.\
       - df is data.frame with 32857 observations of 3 variables
       Variables 
       - $FirstNames (factor w/ 30295 levels), 
