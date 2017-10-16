@@ -1,0 +1,90 @@
+---
+title: "YKunwar_Livesession5assignment"
+author: "Yejur Singh Kunwar"
+date: "10/3/2017"
+output: 
+ html_document:
+ assignment5_md: TRUE
+---
+# Live session Unit 05 assignment
+
+# Questions
+
+## 1. Data Munging
+```{r, echo=TRUE}
+# a. Importing yob2016.txt, assigning to an object df, and defining columns
+df <- read.table("~/MSDS6306/Test_git/Homework_git/yob2016.txt", header= FALSE, sep = ";")
+colnames(df) <- c("FirstNames", "Gender", "TotalChildren")
+head(df)
+
+# b. Displaying summary and structure of df
+# Summary of df
+summary(df) 
+# Structure of df
+str(df)
+
+# c. Redundant name and displaying it (fixing problem with raw file)
+match_name <-  df[grep("yyy$", df$FirstNames), ]
+match_name
+
+
+# d. Removing misspelled names from dataset and saving dataset as an object y2016
+y2016 <- df[-c(212),]
+
+```
+
+# 2. Data Merging
+```{r, echo=TRUE}
+# a. Importing yob2015.txt, assigning the dataframe to y2015
+y2015<- read.table("~/MSDS6306/Test_git/Homework_git/yob2015.txt", header= FALSE, sep = ",")
+colnames(y2015) <- c("FirstNames", "Gender", "TotalChildren")
+head(y2015)
+
+# b. Displaying the last 10 rows 
+tail(y2015, n=10)
+```
+#### Observation
+* The last 10 rows have the names of male children with 5 children with that name each. 
+
+```{r, echo=TRUE}
+# c. Merging y2016 and y2015 by FirstNames column, assigning it to dataframe object 'final'
+final <- merge(y2016, y2015, by = c("FirstNames", "Gender"), na.rm= TRUE)
+
+```
+
+# 3. Data Summary
+```{r, echo=TRUE}
+# a. Creating new column called "Total" in final
+total <- c(final$TotalChildren.x + final$TotalChildren.y)
+all <- data.frame(final, total)
+head(all)
+
+```
+* How many people were given popular names
+
+```{r, echo=TRUE}
+# b. Sorting the data by Total, and displaying top 10 most popular names
+top_10 <- all[order(-total),]
+sorted_top10 <- head(top_10, n=10)
+sorted_top10
+
+# c. Client is expecting girl, omiting boys and displaying top 10 most popular girl's names
+femaletop_10 <- all[order(all$Gender, -all$total),]
+girl_top10 <- head(femaletop_10, n=10)
+girl_top10
+# d. Writing these top 10 girl names and their Totals to a CSV file
+new <- data.frame(girl_top10$FirstNames, girl_top10$total) 
+colnames(new) = c("GirlsFirstName", "Total")
+new
+write.csv(new, file = "girl_top10.csv", row.names = FALSE)
+```
+
+# Github URL
+  * Link:https://github.com/yejurkunwar/SMU-MSDS-homework
+  
+# Displaying sessionInfo for documentation
+```{r, echo=TRUE}
+sessionInfo()
+```
+
+
